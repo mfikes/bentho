@@ -2,16 +2,16 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 static NSThread* staticJavaScriptThread = nil;
-static JSContext* staticContext = nil;
+static JSContextRef staticContext;
 
 @implementation BTHContextExecutor
 
 - (instancetype)init
 {
     id me = [self initWithJavaScriptThread:(staticJavaScriptThread ? staticJavaScriptThread : [NSThread mainThread])
-                          globalContextRef:staticContext.JSGlobalContextRef];
+                          globalContextRef:staticContext];
     staticJavaScriptThread = nil;
-    staticContext = nil;
+    JSGlobalContextRelease(staticContext);
     return me;
 }
 
@@ -20,9 +20,9 @@ static JSContext* staticContext = nil;
     staticJavaScriptThread = thread;
 }
 
-+(void) setContext:(JSContext*)context
++(void) setContext:(JSGlobalContextRef)context
 {
-    staticContext = context;
+    staticContext = JSGlobalContextRetain(context);
 }
 
 @end

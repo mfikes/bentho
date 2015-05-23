@@ -1,12 +1,9 @@
 #import "RCTContextExecutor.h"
 
 /**
- This class exists so that a client-created `JSContext`
+ This class exists so that a client-created `JSGlobalContextRef`
  instance and optional JavaScript thread can be injected
  into an `RCTContextExecutor`.
-
- This class is designed to work with the `JSContext`
- having been created on the main thread.
 */
 @interface BTHContextExecutor : RCTContextExecutor
 
@@ -25,6 +22,6 @@
 
  @param context the context
  */
-+(void) setContext:(JSContext*)context;
++(void) setContext:(JSGlobalContextRef)context;
 
 @end
