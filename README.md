@@ -8,7 +8,7 @@ This repository contains some utility classes facilitating working with React Na
 
 ```
 platform :ios, '8.0'
-pod "Bentho", "~> 0.3.0"
+pod "Bentho", "~> 0.4.0"
 ```
 
 ## License
